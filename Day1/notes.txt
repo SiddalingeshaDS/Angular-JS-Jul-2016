@@ -17,3 +17,5 @@ Logic     |    9. Constant
             -- 10. Provider
 
 
+Scope Object: 
+Defines a boundary for data that is accessible for a particular component.
