@@ -2,6 +2,18 @@ AngularJS
 
 
 Framework for building RIA
+--------------------------
 
+
+               1. Modules
+            -- 2. Scope
+UI     <= |    3. Directives
+Logic     |    4. Filters - Angular components used to transform the component for presentation purposes
+            -- 5. Controllers
+            -- 6. Value
+          |    7. Factory
+Non-UI <= |    8 Service
+Logic     |    9. Constant
+            -- 10. Provider
 
 
