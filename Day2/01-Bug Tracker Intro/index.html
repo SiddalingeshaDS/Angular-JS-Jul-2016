@@ -73,8 +73,22 @@
 		};
         $scope.setSelectedBug = function(bug){
             $scope.selectedBug = bug;
-        }
-	})
+        };
+        $scope.removeClosed = function(bugs){
+            for(var i=bugs.length - 1, len = 0; i >= len; i--){
+                if(bugs[i].isClosed)
+                    bugs.splice(i,1);
+            }
+        };
+        $scope.getClosedCount = function(){
+            var result = 0;
+            for(var i=0; i < $scope.bugs.length; i++)
+                if($scope.bugs[i].isClosed)
+                    ++result;
+            return result;
+                
+        };
+	});
 	</script>
 </head>
 <body ng-app="bugTrackerApp">
@@ -83,7 +97,7 @@
 	<div class="content" ng-controller="bugsController">
 		
 		<section class="stats">
-			<span class="closed">3</span>
+			<span class="closed">{{getClosedCount()}}</span>
 			<span> / </span>
 			<span>{{bugs.length}}</span>
 		</section>
@@ -112,7 +126,7 @@
 					<input type="button" value="Select" ng-click="setSelectedBug(bug)" style="float:right;">
 				</li>
 			</ol>
-			<input type="button" value="Remove Closed">
+			<input type="button" value="Remove Closed" ng-click="removeClosed(bugs)">
 		</section>
 		<section class="selected">
 			<h3>{{selectedBug.name}}</h3>
