@@ -60,14 +60,15 @@
 	<script>
 	var bugTrackerApp = angular.module('bugTrackerApp', []);
     
+    bugTrackerApp.value('defaultBugName','[Default Bug]');
         
-    bugTrackerApp.factory("bugOperations",function(){
+    bugTrackerApp.factory('bugOperations',function(defaultBugName){
         var maxBugId = 0;
         return {
             create: function(bugName){
                 return {
                     id : ++maxBugId,
-                    name : bugName,
+                    name : bugName || defaultBugName,
                     isClosed: false
                 };
             },
