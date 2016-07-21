@@ -7,8 +7,14 @@
 		.result{
 			font-size: 22pt;
 		}
-		
+		.field{
+			margin-bottom: 10px;
+		}
+		label{
+			display: block;
+		}
 	</style>
+	<script src="angular.js"></script>
 </head>
 <script>
 	function MathCalculator(){
@@ -28,31 +34,64 @@
 	MathCalculator.prototype.divide = function(){
 		this.result = this.number1 / this.number2;
 	}
+    
+    angular
+			.module("myApp",[])
+            .controller('calculatorController1', function($scope){
+                $scope.calculator = new MathCalculator();
+            })
+			.controller('calculatorController2', function($scope){
+                $scope.calculator = new MathCalculator();
+                $scope.operation = '';
+                $scope.calculate = function(){
+                    switch($scope.operation){
+                        case 'add':
+                            $scope.calculator.add();
+                            break;
+                        case 'subtract':
+                            $scope.calculator.subtract();
+                            break;
+                        case 'multiply':
+                            $scope.calculator.multiply();
+                            break;
+                        case 'divide':
+                            $scope.calculator.divide();
+                            break;
+                    }
+            
+                }
+			});
 </script>
-<body>
+<body ng-app="myApp">
 	<h1>Math Calculator</h1>
 	<hr>
-	<div id="calculator1">
-		<input type="number">
-		<input type="number">
-		<input type="button" value="Add">
-		<input type="button" value="Subtract">
-		<input type="button" value="Multiply">
-		<input type="button" value="Divide">
-		<div class="result">[Result]</div>
+	<div id="calculator1" ng-controller="calculatorController1">
+        <div class="field">
+			<label for="">Number1 :</label>
+    		<input type="number" ng-model="calculator.number1">
+		</div>
+        <div class="field">
+			<label for="">Number2 :</label>
+    		<input type="number" ng-model="calculator.number2">
+		</div>
+		<input type="button" value="Add" ng-click="calculator.add()">
+		<input type="button" value="Subtract" ng-click="calculator.subtract()">
+		<input type="button" value="Multiply" ng-click="calculator.multiply()">
+		<input type="button" value="Divide" ng-click="calculator.divide()">
+		<div class="result" ng-bind="calculator.result">[Result]</div>
 	</div>
 	<hr>
-	<div id="calculator2">
-		<input type="number" >
-		<select >
+	<div id="calculator2" ng-controller="calculatorController2">
+		<input type="number" ng-model="calculator.number1">
+		<select ng-model="operation">
 			<option value="add">Add</option>
 			<option value="subtract">Subtract</option>
-			<option value="Multiply">Multiply</option>
-			<option value="Divide">divide</option>
+			<option value="multiply">Multiply</option>
+			<option value="divide">Divide</option>
 		</select>
-		<input type="number" >
-		<input type="button" value="Calculate">
-		<div class="result">[Result]</div>
+		<input type="number" ng-model="calculator.number2">
+		<input type="button" value="Calculate" ng-click="calculate()">
+		<div class="result" ng-bind="calculator.result">[Result]</div>
 	</div>
 </body>
 </html>
