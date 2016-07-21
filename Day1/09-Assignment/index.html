@@ -44,20 +44,21 @@
                 $scope.calculator = new MathCalculator();
                 $scope.operation = '';
                 $scope.calculate = function(){
-                    switch($scope.operation){
-                        case 'add':
-                            $scope.calculator.add();
-                            break;
-                        case 'subtract':
-                            $scope.calculator.subtract();
-                            break;
-                        case 'multiply':
-                            $scope.calculator.multiply();
-                            break;
-                        case 'divide':
-                            $scope.calculator.divide();
-                            break;
-                    }
+//                    switch($scope.operation){
+//                        case 'add':
+//                            $scope.calculator.add();
+//                            break;
+//                        case 'subtract':
+//                            $scope.calculator.subtract();
+//                            break;
+//                        case 'multiply':
+//                            $scope.calculator.multiply();
+//                            break;
+//                        case 'divide':
+//                            $scope.calculator.divide();
+//                            break;
+//                    }
+                    $scope.calculator[$scope.operation]();
             
                 }
 			});
