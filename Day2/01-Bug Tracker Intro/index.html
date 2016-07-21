@@ -105,14 +105,6 @@
                     bugs.splice(i,1);
             }
         };
-        $scope.getClosedCount = function(){
-            var result = 0;
-            for(var i=0; i < $scope.bugs.length; i++)
-                if($scope.bugs[i].isClosed)
-                    ++result;
-            return result;
-                
-        };
 	});
         
     bugTrackerApp.value('defaultTrimLength',20);
@@ -123,6 +115,15 @@
             return data.length < trimLength ? data : data.substring(0,trimLength) + '...';
         }
     });
+    bugTrackerApp.filter('closedCount',function(){
+        return function(data){
+            var result = 0;
+            for(var i=0; i < data.length; i++)
+                if(data[i].isClosed)
+                    ++result;
+            return result;
+        }
+    });
 	</script>
 </head>
 <body ng-app="bugTrackerApp">
@@ -131,7 +132,7 @@
 	<div class="content" ng-controller="bugsController">
 		
 		<section class="stats">
-			<span class="closed">{{getClosedCount()}}</span>
+			<span class="closed">{{ bugs | closedCount}}</span>
 			<span> / </span>
 			<span>{{bugs.length}}</span>
 		</section>
@@ -160,7 +161,7 @@
 		<section class="list">
 			<ol>
 				<li ng-repeat="bug in (bugs | filter : searchBug | orderBy: sortBugOrder: sortBugDescending) ">
-					<span class="bugname" ng-class="{closed: bug.isClosed}" ng-click="toggleBug(bug)">{{bug.name | trimText}}</span>
+					<span class="bugname" ng-class="{closed: bug.isClosed}" ng-click="toggleBug(bug)">{{bug.name | trimText: 30}}</span>
 					<input type="button" value="Select" ng-click="setSelectedBug(bug)" style="float:right;">
 				</li>
 			</ol>
