@@ -56,84 +56,13 @@
 		12. Make the bugs accessible using an URL
 		*/
 	</script>
-	<script src="angular.js"></script>
-	<script src="utils.js"></script>
-	<script>
-        
-	var bugTrackerApp = angular.module('bugTrackerApp', ['utils']);
-    
-    bugTrackerApp.value('defaultBugName','[Default Bug]');
-        
-    bugTrackerApp.factory('bugOperations',function(defaultBugName){
-        var maxBugId = 0;
-        return {
-            create: function(bugName){
-                return {
-                    id : ++maxBugId,
-                    name : bugName || defaultBugName,
-                    isClosed: false
-                };
-            },
-            toggle : function(bug){
-                bug.isClosed = !bug.isClosed;
-            }
-        };
-    });
-        
-	bugTrackerApp.controller('bugsController', function($scope,bugOperations){
-		$scope.bugs = [
-			bugOperations.create('Unable to write to the local storage'),
-			bugOperations.create('User actions not recognized'),
-			bugOperations.create('Server communication failure')
-		];
-		$scope.addBug = function(newBugName){
-//            var newBug = {
-//                name : newBugName,
-//                isClosed: false
-//            };
-            var newBug = bugOperations.create(newBugName);
-			$scope.bugs.push(newBug);
-		};
-		$scope.toggleBug = function(bug){
-//			bug.isClosed = !bug.isClosed;
-            bugOperations.toggle(bug);
-		};
-        $scope.setSelectedBug = function(bug){
-            $scope.selectedBug = bug;
-        };
-        $scope.removeClosed = function(bugs){
-            for(var i=bugs.length - 1, len = 0; i >= len; i--){
-                if(bugs[i].isClosed)
-                    bugs.splice(i,1);
-            }
-        };
-	});
-        
-
-    bugTrackerApp.filter('closedCount',function(){
-        return function(data){
-            var result = 0;
-            for(var i=0; i < data.length; i++)
-                if(data[i].isClosed)
-                    ++result;
-            return result;
-        }
-    });
-    bugTrackerApp.filter('closedCount',function($filter){
-        var builtinFilter = $filter('filter');
-        return function(bugs){
-            return builtinFilter(bugs,{isClosed : true}).length;
-        }
-    });
-    bugTrackerApp.filter('closedCount',function($filter){
-        return  function(bugs){
-            return bugs.reduce(function(result, bug){
-                return bug.isClosed ? ++result : result;
-            },0);
-        };
-    });
-        
-	</script>
+	<script src="scripts/vendor/angular.js"></script>
+	<script src="scripts/app/bugTrackerApp/bugTrackerApp.js"></script>
+	<script src="scripts/app/bugTrackerApp/bugTrackerApp.defaultBugName.js"></script>
+	<script src="scripts/app/bugTrackerApp/bugTrackerApp.bugOperations.js"></script>
+	<script src="scripts/app/bugTrackerApp/bugTrackerApp.bugController.js"></script>
+	<script src="scripts/app/bugTrackerApp/bugTrackerApp.closedCountFilter.js"></script>
+	<script src="scripts/app/bugTrackerApp/utils/utils.js"></script>
 </head>
 <body ng-app="bugTrackerApp">
 	<h1>Bug Tracker</h1>
