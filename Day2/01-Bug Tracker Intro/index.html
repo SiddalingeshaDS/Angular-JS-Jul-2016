@@ -31,8 +31,15 @@
 		.bugname{
 			cursor: pointer;
 		}
+		.selected{
+			position: absolute;
+			bottom: 0px;
+			right : 0px;
+			margin : 10px;
+			border : 1px solid black;
+			padding: 10px;
+		}
 	</style>
-	<script src="angular.js"></script>
 	<script>
 		/*
 		1. List of bugs
@@ -49,29 +56,36 @@
 		12. Make the bugs accessible using an URL
 		*/
 	</script>
+	<script src="angular.js"></script>
 	<script>
-        
-           var bugTrackerApp =  angular.module("bugTrackerApp",[]);
-            bugTrackerApp.controller('bugController', function($scope){
-                $scope.bugs = ['Unable to write to local storage',
-                              'User actions into recognized',
-                              'Server communication failure'];
-                $scope.addBug = function(newBug){
-                    $scope.bugs.push(newBug);   
-                }
-            });
-        
-        
-    </script>
+	var bugTrackerApp = angular.module('bugTrackerApp', []);
+	bugTrackerApp.controller('bugsController', function($scope){
+		$scope.bugs = [
+			{ name : 'Unable to write to the local storage', isClosed : false},
+			{ name : 'User actions not recognized', isClosed : true},
+			{ name : 'Server communication failure', isClosed : false},
+		];
+		$scope.addBug = function(newBug){
+			$scope.bugs.push(newBug);
+		};
+		$scope.toggleBug = function(bug){
+			bug.isClosed = !bug.isClosed;
+		};
+        $scope.setSelectedBug = function(bug){
+            $scope.selectedBug = bug;
+        }
+	})
+	</script>
 </head>
 <body ng-app="bugTrackerApp">
 	<h1>Bug Tracker</h1>
 	<hr>
-	<div class="content" ng-controller="bugController">
+	<div class="content" ng-controller="bugsController">
+		
 		<section class="stats">
 			<span class="closed">3</span>
 			<span> / </span>
-			<span>{{ bugs.length }}</span>
+			<span>{{bugs.length}}</span>
 		</section>
 		<section class="search">
 			<label for="">Search : </label>
@@ -88,14 +102,20 @@
 		</section>
 		<section class="edit">
 			<label for="">Bug :</label>
-			<input type="text" name="" id="" ng-model="newBugName">
+			<input type="text" ng-model="newBugName">
 			<input type="button" value="Save" ng-click="addBug(newBugName)">
 		</section>
 		<section class="list">
 			<ol>
-				<li ng-repeat="bug in bugs"><span class="bugname">{{ bug }}</span></li>
+				<li ng-repeat="bug in bugs track by $index">
+					<span class="bugname" ng-class="{closed: bug.isClosed}" ng-click="toggleBug(bug)">{{bug.name}}</span>
+					<input type="button" value="Select" ng-click="setSelectedBug(bug)" style="float:right;">
+				</li>
 			</ol>
 			<input type="button" value="Remove Closed">
+		</section>
+		<section class="selected">
+			<h3>{{selectedBug.name}}</h3>
 		</section>
 	</div>
 </body>
