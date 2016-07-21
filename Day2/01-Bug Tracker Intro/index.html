@@ -124,6 +124,20 @@
             return result;
         }
     });
+    bugTrackerApp.filter('closedCount',function($filter){
+        var builtinFilter = $filter('filter');
+        return function(bugs){
+            return builtinFilter(bugs,{isClosed : true}).length;
+        }
+    });
+    bugTrackerApp.filter('closedCount',function($filter){
+        return  function(bugs){
+            return bugs.reduce(function(result, bug){
+                return bug.isClosed ? ++result : result;
+            },0);
+        };
+    });
+        
 	</script>
 </head>
 <body ng-app="bugTrackerApp">
@@ -132,7 +146,8 @@
 	<div class="content" ng-controller="bugsController">
 		
 		<section class="stats">
-			<span class="closed">{{ (bugs | filter:{isClosed: true}).length }}</span>
+<!--			<span class="closed">{{ (bugs | filter:{isClosed: true}).length }}</span>-->
+            <span class="closed">{{bugs | closedCount}}</span>
 			<span> / </span>
 			<span>{{bugs.length}}</span>
 		</section>
