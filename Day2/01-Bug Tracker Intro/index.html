@@ -59,24 +59,29 @@
 	<script src="angular.js"></script>
 	<script>
 	var bugTrackerApp = angular.module('bugTrackerApp', []);
+    function createBugOperations(){
+        var maxBugId = 0;
+        return {
+            create: function(bugName){
+                return {
+                    id : ++maxBugId,
+                    name : bugName,
+                    isClosed: false
+                };
+            },
+            toggle : function(bug){
+                bug.isClosed = !bug.isClosed;
+            }
+        };
+    }
         
-    bugTrackerApp.value("bugOperations",{
-        create: function(bugName){
-            return {
-                name : bugName,
-                isClosed: false
-            };
-        },
-        toggle : function(bug){
-            bug.isClosed = !bug.isClosed;
-        }
-    });
+    bugTrackerApp.value("bugOperations",createBugOperations());
         
 	bugTrackerApp.controller('bugsController', function($scope,bugOperations){
 		$scope.bugs = [
-			{ name : 'Unable to write to the local storage', isClosed : false},
-			{ name : 'User actions not recognized', isClosed : true},
-			{ name : 'Server communication failure', isClosed : false},
+			bugOperations.create('Unable to write to the local storage'),
+			bugOperations.create('User actions not recognized'),
+			bugOperations.create('Server communication failure')
 		];
 		$scope.addBug = function(newBugName){
 //            var newBug = {
