@@ -60,7 +60,7 @@
 	<script>
 	var bugTrackerApp = angular.module('bugTrackerApp', []);
         
-    var bugOperations = {
+    bugTrackerApp.value("bugOperations",{
         create: function(bugName){
             return {
                 name : bugName,
@@ -70,9 +70,9 @@
         toggle : function(bug){
             bug.isClosed = !bug.isClosed;
         }
-    };
+    });
         
-	bugTrackerApp.controller('bugsController', function($scope){
+	bugTrackerApp.controller('bugsController', function($scope,bugOperations){
 		$scope.bugs = [
 			{ name : 'Unable to write to the local storage', isClosed : false},
 			{ name : 'User actions not recognized', isClosed : true},
