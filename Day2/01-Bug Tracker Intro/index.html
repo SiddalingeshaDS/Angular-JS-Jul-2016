@@ -58,7 +58,6 @@
                               'Server communication failure'];
                 $scope.addBug = function(newBug){
                     $scope.bugs.push(newBug);   
-                    
                 }
             });
         
@@ -94,8 +93,7 @@
 		</section>
 		<section class="list">
 			<ol>
-				<li><span class="bugname">Unable to write to the local storage</span></li>
-				<li><span class="bugname closed">User actions not recognized</li>
+				<li ng-repeat="bug in bugs"><span class="bugname">{{ bug }}</span></li>
 			</ol>
 			<input type="button" value="Remove Closed">
 		</section>
