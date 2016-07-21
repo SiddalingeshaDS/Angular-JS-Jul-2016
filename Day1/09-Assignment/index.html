@@ -83,14 +83,14 @@
 	<hr>
 	<div id="calculator2" ng-controller="calculatorController2">
 		<input type="number" ng-model="calculator.number1">
-		<select ng-model="operation">
+		<input type="number" ng-model="calculator.number2">
+		<select ng-model="operation" ng-change="calculate()">
 			<option value="add">Add</option>
 			<option value="subtract">Subtract</option>
 			<option value="multiply">Multiply</option>
 			<option value="divide">Divide</option>
 		</select>
-		<input type="number" ng-model="calculator.number2">
-		<input type="button" value="Calculate" ng-click="calculate()">
+<!--		<input type="button" value="Calculate" ng-click="calculate()">-->
 		<div class="result" ng-bind="calculator.result">[Result]</div>
 	</div>
 </body>
