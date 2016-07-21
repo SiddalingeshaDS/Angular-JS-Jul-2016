@@ -132,7 +132,7 @@
 	<div class="content" ng-controller="bugsController">
 		
 		<section class="stats">
-			<span class="closed">{{ bugs | closedCount}}</span>
+			<span class="closed">{{ (bugs | filter:{isClosed: true}).length }}</span>
 			<span> / </span>
 			<span>{{bugs.length}}</span>
 		</section>
