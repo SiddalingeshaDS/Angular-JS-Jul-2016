@@ -59,7 +59,9 @@
 	<script src="angular.js"></script>
 	<script>
 	var bugTrackerApp = angular.module('bugTrackerApp', []);
-    function createBugOperations(){
+    
+        
+    bugTrackerApp.factory("bugOperations",function(){
         var maxBugId = 0;
         return {
             create: function(bugName){
@@ -73,9 +75,7 @@
                 bug.isClosed = !bug.isClosed;
             }
         };
-    }
-        
-    bugTrackerApp.value("bugOperations",createBugOperations());
+    });
         
 	bugTrackerApp.controller('bugsController', function($scope,bugOperations){
 		$scope.bugs = [
