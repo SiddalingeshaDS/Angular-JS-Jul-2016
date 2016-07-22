@@ -19,3 +19,7 @@ Logic     |    9. Constant
 
 Scope Object: 
 Defines a boundary for data that is accessible for a particular component.
+
+
+bit.ly/angular-training-videos
+https://www.youtube.com/playlist?list=PL2OMOVtxSKTgH-l6__rvLMVR9qogku0oQ

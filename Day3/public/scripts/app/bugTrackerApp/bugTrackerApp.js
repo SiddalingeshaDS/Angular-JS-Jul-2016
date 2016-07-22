@@ -9,6 +9,9 @@ angular
 					.when('/new', {
 						template : '<new-bug></new-bug>'
 					})
+                    .when('/details/:id', {
+				        template : '<bug-details></bug-details>'
+                    })
 					.otherwise({
 						redirectTo : '/list'
 					});
