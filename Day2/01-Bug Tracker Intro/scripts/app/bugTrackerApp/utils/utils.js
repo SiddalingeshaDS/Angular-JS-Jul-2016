@@ -8,3 +8,11 @@ var utils = angular.module('utils', []);
 			return data.length < trimLength ? data : data.substr(0,trimLength)+'...';
 		}
 	});
+
+    utils.value('momentApi', moment);
+
+    utils.filter('elapsed', function(momentApi){
+        return function(value){
+            return momentApi(value).fromNow();
+        }
+    });

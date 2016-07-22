@@ -39,6 +39,9 @@
 			border : 1px solid black;
 			padding: 10px;
 		}
+        .datetime{
+			font-style: italic;
+		}
 	</style>
 	<script>
 		/*
@@ -68,6 +71,7 @@
 		*/
 	</script>
 	<script src="scripts/vendor/angular.js"></script>
+	<script src="scripts/vendor/moment.js"></script>
 	<script src="scripts/app/bugTrackerApp/utils/utils.js"></script>
 
 	<script src="scripts/app/bugTrackerApp/bugTrackerApp.js"></script>
@@ -118,6 +122,7 @@
 					<span class="bugname" ng-click="toggleBug(bug)" ng-class="{closed : bug.isClosed}">
 						{{bug.name | trimText}}</span>
 					<input type="button" value="Select" ng-click="setSelectedBug(bug)">
+					<div class="datetime">{{bug.createdAt | elapsed}}</div>
 				</li>
 			</ol>
 			<input type="button" value="Remove Closed" ng-click="removeClosed()">
