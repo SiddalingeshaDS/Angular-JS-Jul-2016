@@ -3,46 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Bug Tracker</title>
-	<style>
-		section{
-			margin-bottom: 10px
-		}
-		.stats{
-			font-size: 22pt;
-		}
-		.closed{
-			color : red;
-			text-decoration: line-through;
-			font-weight: bold;
-			font-style: italic;
-		}
-		.list ol{
-			width: 450px;
-			list-style: none;
-			-webkit-padding-start: 0em;
-		}
-		li{
-			margin-bottom: 5px;
-			border : 1px solid grey;
-			border-radius: 5px;
-			padding : 8px;
-			background-color: #e7e7e7;
-		}
-		.bugname{
-			cursor: pointer;
-		}
-		.selected{
-			position: absolute;
-			bottom: 0px;
-			right : 0px;
-			margin : 10px;
-			border : 1px solid black;
-			padding: 10px;
-		}
-        .datetime{
-			font-style: italic;
-		}
-	</style>
+	<link rel="stylesheet" href="styles/style.css">
 	<script>
 		/*
 		1. List of bugs - done
@@ -82,54 +43,12 @@
 <!--	<script src="scripts/app/bugTrackerApp/bugTrackerApp.bugStorage.js"></script>-->
 	<script src="scripts/app/bugTrackerApp/bugTrackerApp.bugStorage.service.js"></script>
 <!--	<script src="scripts/app/bugTrackerApp/bugTrackerApp.bugStorage.js"></script>-->
+    <script src="scripts/app/bugTrackerApp/bugTrackerApp.directives.js"></script>
 </head>
 <body ng-app="bugTrackerApp">
+<hello-world>Welcome to angular.js</hello-world>
 	<h1>Bug Tracker</h1>
 	<hr>
-	<div class="content" ng-controller="bugsController">
-		
-		<section class="stats">
-			<!-- <span class="closed">{{ (bugs | filter:{isClosed : true}).length }}</span> -->
-			<span class="closed">{{bugs | closedCount}}</span>
-			<span> / </span>
-			<span>{{bugs.length}}</span>
-		</section>
-		<section class="search">
-			<label for="">Search : </label>
-			<input type="text" ng-model="searchBug.name">
-			<label for="">Is Closed ? :</label>
-			<input type="checkbox" ng-model="searchBug.isClosed">
-			<input type="button" value="Show All" ng-click="searchBug = {}">
-		</section>
-		<section class="sort">
-			<label for="">Sort By :</label>
-			<!-- <input type="text" ng-model="sortBugOrder"> -->
-			<select ng-model="sortBugOrder">
-				<option value="name">Name</option>
-				<option value="isClosed">Status</option>
-			</select>
-			<label for="">Descending ? :</label>
-			<input type="checkbox" ng-model="sortBugDescending">
-		</section>
-		<section class="edit">
-			<label for="">Bug :</label>
-			<input type="text" ng-model="newBugName">
-			<input type="button" value="Save" ng-click="addBug(newBugName)">
-		</section>
-		<section class="list">
-			<ol>
-				<li ng-repeat="bug in (bugs | filter:searchBug | orderBy:sortBugOrder:sortBugDescending) ">
-					<span class="bugname" ng-click="toggleBug(bug)" ng-class="{closed : bug.isClosed}">
-						{{bug.name | trimText}}</span>
-					<input type="button" value="Select" ng-click="setSelectedBug(bug)">
-					<div class="datetime">{{bug.createdAt | elapsed}}</div>
-				</li>
-			</ol>
-			<input type="button" value="Remove Closed" ng-click="removeClosed()">
-		</section>
-		<section class="selected">
-			<h3>{{selectedBug.name}}</h3>
-		</section>
-	</div>
+	<bugs></bugs>
 </body>
 </html>

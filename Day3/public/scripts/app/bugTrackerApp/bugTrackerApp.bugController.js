@@ -8,6 +8,9 @@ angular.module('bugTrackerApp')
 			$scope.bugs = bugs;
 		});
 
+		$scope.searchBug = {};
+		$scope.sortBug = {};
+		
 		$scope.addBug = function(newBugName){
 			bugService
 				.add(newBugName)
