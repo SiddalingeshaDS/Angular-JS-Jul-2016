@@ -20,6 +20,44 @@ Logic     |    9. Constant
 Scope Object: 
 Defines a boundary for data that is accessible for a particular component.
 
-
+Angular JS Tutorial:
 bit.ly/angular-training-videos
 https://www.youtube.com/playlist?list=PL2OMOVtxSKTgH-l6__rvLMVR9qogku0oQ
+
+
+ui-router:
+    gives much better functionality than ng-router
+    gives nested routes feature
+    part of support proj called angular-ui
+    will have $stateProvider in place of $routeProvider
+    
+Book :
+    Build your own Angular JS
+    Explains how to angular is built
+    
+John Papa Angular Style Guide
+    https://github.com/johnpapa/angular-styleguide
+    https://github.com/johnpapa/angular-styleguide/tree/master/a1/README.md
+
+Angular-seed available in github
+
+
+Generator called yeoman - regular engine using which we can generate applucation
+    #install yo
+    npm install -g yo
+    
+    #install a generator    
+    npm install -g generator-webapp
+    
+    #run it
+    yo webapp
+        
+        
+    #install angular generator
+    generator-angular
+    
+
+ionic - native mobile app dev framework built on angular
+
+    
+    
