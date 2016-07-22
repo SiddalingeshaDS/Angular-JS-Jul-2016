@@ -32,8 +32,9 @@
 		*/
 	</script>
 	<script src="scripts/vendor/angular.js"></script>
+	<script src="scripts/vendor/angular-route.js"></script>
 	<script src="scripts/vendor/moment.js"></script>
-	<script src="scripts/app/bugTrackerApp/utils/utils.js"></script>
+	<script src="scripts/app/utils/utils.js"></script>
 
 	<script src="scripts/app/bugTrackerApp/bugTrackerApp.js"></script>
 	<script src="scripts/app/bugTrackerApp/bugTrackerApp.bugOperations.js"></script>
@@ -44,11 +45,12 @@
 	<script src="scripts/app/bugTrackerApp/bugTrackerApp.bugStorage.service.js"></script>
 <!--	<script src="scripts/app/bugTrackerApp/bugTrackerApp.bugStorage.js"></script>-->
     <script src="scripts/app/bugTrackerApp/bugTrackerApp.directives.js"></script>
+    <script src="scripts/app/bugTrackerApp/bugTrackerApp.newBugController.js"></script>
+    <script src="scripts/app/bugTrackerApp/bugTrackerApp.newBugDirective.js"></script>
 </head>
 <body ng-app="bugTrackerApp">
-<hello-world>Welcome to angular.js</hello-world>
 	<h1>Bug Tracker</h1>
 	<hr>
-	<bugs></bugs>
+	<ng-view></ng-view>
 </body>
 </html>
