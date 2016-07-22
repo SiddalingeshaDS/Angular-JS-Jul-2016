@@ -1,1 +1,2 @@
-    angular.module('bugTrackerApp').value('defaultBugName','[Default Bug]');
+angular.module('bugTrackerApp')
+		.value('defaultBugName', '[Default Bug]');

@@ -1,4 +1,1 @@
-    // Creating the module
-        
-	var bugTrackerApp = angular.module('bugTrackerApp', ['utils']);
-    
+angular.module('bugTrackerApp', ['utils']);
