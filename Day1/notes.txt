@@ -33,8 +33,9 @@ ui-router:
     
 Book :
     Build your own Angular JS
-    Explains how to angular is built
-    
+                Explains how to angular is built
+    ng-book
+        
 John Papa Angular Style Guide
     https://github.com/johnpapa/angular-styleguide
     https://github.com/johnpapa/angular-styleguide/tree/master/a1/README.md
@@ -59,5 +60,21 @@ Generator called yeoman - regular engine using which we can generate applucation
 
 ionic - native mobile app dev framework built on angular
 
+Materialize : 
+    http://materializecss.com/
+
+React :
+    https://facebook.github.io/react/docs/why-react.html
+    https://facebook.github.io/react/
+    
+React with Redux : 
+    https://github.com/reactjs/react-redux
+
+AngularJS 2 with Redux
+
+Grunt is for Javascript what Maven is for Java
+
+Blog:
+A journey through Javascript MVC Jungle
     
     
